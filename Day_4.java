@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Day_4 {
@@ -59,6 +61,7 @@ public class Day_4 {
 
 	}
 	
+	//Code for Making length common
 	public static void lengthColumn(Scanner sc) {
 		int t=sc.nextInt();
 		while(t--!=0) {
@@ -80,8 +83,42 @@ public class Day_4 {
 			}
 		}
 	}
+	
+	//Code for The Army Position Question
+	public static void theArmy(Scanner sc) {
+		int t=sc.nextInt();
+		while(t--!=0) {
+			int n=sc.nextInt();
+			int m=sc.nextInt();
+			int arr[]=new int[n];
+			ArrayList<Integer> list=new ArrayList<Integer>();
+			
+			for(int i=0;i<m;i++) {
+			    int x=sc.nextInt();
+			    list.add(x);
+			}
+		    Collections.sort(list);
+		    int min=list.get(0);
+		    int max=list.get(m-1);
+		    
+		    
+		    for(int i=0;i<n;i++) {
+		    	int max_diff=0;
+		    	max_diff=Math.max(Math.abs(i-min),Math.abs(i-max));
+		    	arr[i]=max_diff;
+		    }
+		    
+		    for(int i=0;i<n;i++) {
+		    	System.out.print(arr[i]+" ");
+		    }
+		    System.out.println();
+		}
+		
+	}
+	
 	public static void main(String[] args) {
 		Scanner sc=new Scanner(System.in);
+		
 		
 		
 	}
