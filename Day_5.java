@@ -144,7 +144,51 @@ public class Day_5 {
 		}	
 	}
 	
+	//Code for Freedom Fighter Question
+	public static void freedomFighter() {
+		 Scanner sc=new Scanner(System.in);
+		    int t=sc.nextInt();
+		    while(t--!=0) {
+		    	int n=sc.nextInt();
+		    	int p=sc.nextInt();
+		    	ArrayList<Integer> list=new ArrayList<Integer>();
+		    	for(int i=0;i<n;i++) {
+		    		int x=sc.nextInt();
+		    		list.add(x);
+		    	}
+		    	Collections.sort(list);
+		    	int count=0;
+		    	for(int i=0;i<n;i++) {
+		    		if(list.get(i)<=p) {
+		    			p=p-list.get(i);
+		    			count=count+1;
+		    		}
+		    		else {
+		    			break;
+		    		}
+		    	}
+		    	System.out.println(count);
+		    }
+	}
+	
 	public static void main(String[] args){
-		
+		Scanner sc=new Scanner(System.in);
+		int t=sc.nextInt();
+		while(t--!=0){
+			int l=sc.nextInt();
+			int r=sc.nextInt();
+			int x=l*(l+1)*(l+2)*(l+3);
+			int sum=x;
+			int fin=l+3;
+			for(int i=l+1;i<=r;i++) {
+				fin++;
+				int ini=(i-1);
+				int result=(x*fin)/ini;
+				x=result;
+				sum=sum+result;
+				
+			}
+			System.out.println(sum);
+		}
 	}
 }
