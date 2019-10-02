@@ -14,7 +14,7 @@ public class Day_3 {
 			}
 		}
 	count=((count)*(count+1))/2;
-	return count;
+	return count ;
 	}
 	
 	//Function for making all number equal
