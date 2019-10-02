@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class Day_5 {
 
-	//Questions of Past Contests(KJSCE Code Spree)
+	//******************Questions of Past Contests(KJSCE Code Spree)**********//
 	
 	//Code for Friends Number
 	public static void friendsNumber(Scanner sc){
@@ -92,9 +92,59 @@ public class Day_5 {
 
 	}
 	
+	//*******************Question of August Long Challenge********************//
+	
+	//Code for Eidi Gift
+	public static void eidiGift(Scanner sc) {
+		int t=sc.nextInt();
+		while(t--!=0) {
+			int age[]=new int[3];
+			int money[]=new int[3];
+			for(int i=0;i<3;i++) {
+				age[i]=sc.nextInt();
+			}
+			for(int i=0;i<3;i++) {
+				money[i]=sc.nextInt();
+			}
+		 
+			int flag=0;
+			for(int i=0;i<2;i++) {
+				for(int j=i+1;j<3;j++) {
+					if(age[i]<age[j]) {
+						if(money[i]>=money[j]) {
+							flag=1;
+							break;
+						}
+					}
+					else if(age[i]>age[j]) {
+						if(money[i]<=money[j]) {
+							flag=1;
+							break;
+						}
+					}
+					else {
+						if(money[i]!=money[j]) {
+							flag=1;
+							break;
+						}
+					}
+				}
+				if(flag==1) {
+					break;
+				}
+			}
+		if(flag==1) {
+			System.out.println("NOT FAIR");
+		}
+		else {
+			System.out.println("FAIR");
+		}
+		
+		
+		}	
+	}
+	
 	public static void main(String[] args){
-		Scanner sc=new Scanner(System.in);
 		
 	}
-
 }
