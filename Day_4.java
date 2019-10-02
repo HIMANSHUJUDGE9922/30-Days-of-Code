@@ -7,7 +7,7 @@ public class Day_4 {
 	//Code for Length of Common Pattern 
 	public static void lenghtCommonPattern(Scanner sc){
 		int t=sc.nextInt();
-		while(t--!=0) {
+		while(t--!=0){
 			String str1,str2;
 			str1=sc.next();
 			str2=sc.next();
