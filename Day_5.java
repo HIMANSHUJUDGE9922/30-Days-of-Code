@@ -8,6 +8,7 @@ public class Day_5 {
 
 	//******************Questions of Past Contests(KJSCE Code Spree)**********//
 	
+	
 	//Code for Friends Number
 	public static void friendsNumber(Scanner sc){
 		int t=sc.nextInt();
