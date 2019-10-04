@@ -144,6 +144,9 @@ public class Day_5 {
 		}	
 	}
 	
+	//*******************Question of Freedom Fighter Challenge********************//
+
+	
 	//Code for Freedom Fighter Question
 	public static void freedomFighter() {
 		 Scanner sc=new Scanner(System.in);
