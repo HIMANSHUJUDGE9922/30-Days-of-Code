@@ -1,5 +1,6 @@
 import java.util.Scanner;
 public class Day_1 {
+	
 	public static int arr[]= {6,2,5,5,4,5,6,3,7,6};
 		public static int matches(int c) {
 			int ans=0;
