@@ -80,7 +80,36 @@ public class October {
 		 }
 	}
 	
+	//Question 3
+	public static void arrayModi() {
+		Scanner sc=new Scanner(System.in);
+		int t=sc.nextInt();
+		while(t--!=0) {
+	          
+			 int n=sc.nextInt();
+			 int k=sc.nextInt();
+			 ArrayList<Integer> list=new ArrayList<Integer>();
+			 for(int i=0;i<n;i++) {
+				 int x=sc.nextInt();
+				 list.add(x);
+			 }
+			for(int i=0;i<k;i++) {
+				int z=i%n;
+				int a=list.get(z);
+				int b=list.get(n-1-z);
+				list.set(z,a^b);
+			}
+			for(int i=0;i<n;i++) {
+				System.out.print(list.get(i)+" ");
+			}
+			
+			
+				
+			}
+	}
+    
+	
 	public static void main(String[] args) {
 		
-   }
+	 }
 }
