@@ -39,7 +39,7 @@ public class Day_7 {
 	        visited[pos]=true;
 	        findMin(edges,n,pos,visited,weight);
 	    }
-	
+	 
 	 //Question 1(HackeEarth Graphs)
 	 public static void BFS(int edges[][],int n){
 		 boolean visited[]=new boolean[n+1];
@@ -76,24 +76,61 @@ public class Day_7 {
 		 System.out.println(count);
 	 }
 	
-	 
-	public static void main(String[] args) {
+	 //Question 2(HackerEarth Graphs)
+	 public static void social(int edges[][],int n,int sv,int t){
+		 boolean visited[]=new boolean[n];
+		 int count=0;
+		 
+		 Queue<Integer> queue=new LinkedList<Integer>();
+		 
+		 queue.add(sv);
+		 visited[sv]=true;
+		 
+		 while(!queue.isEmpty()){
+		     
+		     int size=queue.size();
+		     count++;
+		     for(int i=0;i<size;i++){
+		         
+		         int frontNode=queue.poll();
+		         for(int j=0;j<n;j++){
+		             if(!visited[j]&&edges[frontNode][j]==1){
+		                 queue.add(j);
+		                 visited[j]=true;
+		             }
+		         }
+		     }
+		     if(count==t){
+		         break;
+		     }
+		 }
+		 System.out.println(queue.size());
+	}
+	
+	 public static void main(String[] args) {
+         
 		 Scanner sc=new Scanner(System.in);
-         int t=sc.nextInt();
-         while(t--!=0){
-             int n=sc.nextInt();
-             int m=sc.nextInt();
-             int edges[][]=new int[n+1][n+1];
-             for(int i=0;i<m;i++){
-                 int sv=sc.nextInt();
-                 int ev=sc.nextInt();
-                 edges[sv][ev]=1;
-                 edges[ev][sv]=1;
-             }
-             findMin(edges,n);
-             
-             
+         //Vertices
+         int n=sc.nextInt();
+         //Edges
+         int e=sc.nextInt();
+         //Adjacency Array
+         int edges[][]=new int[n][n];
+         for(int i=0;i<e;i++){
+             int sv=sc.nextInt();
+             int ev=sc.nextInt();
+             edges[sv][ev]=1;
+             edges[ev][sv]=1;
          }
+         int m=sc.nextInt();
+         while(m--!=0){
+             int sv=sc.nextInt();
+             int t=sc.nextInt();
+             social(edges,n,sv,t);
+             
+         }	 
+		 
+		 
 
 	}
 
