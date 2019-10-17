@@ -107,30 +107,175 @@ public class Day_7 {
 		 System.out.println(queue.size());
 	}
 	
-	 public static void main(String[] args) {
-         
+	 //Question 3(HackerEarth Graphs)
+	 public static void BFSPath(int edges[][],int n,int x,int y){
+	        int flag=0;
+	        boolean visited[]=new boolean[n+1];
+	        int parent[]=new int[n+1];
+	        for(int i=1;i<=n;i++){
+	            parent[i]=i;
+	        }
+	        Queue<Integer> queue=new LinkedList<Integer>();
+	        queue.add(x);
+	        visited[x]=true;
+	        
+	        while(!queue.isEmpty()){
+	        
+	             int frontNode=queue.poll();
+	             for(int i=1;i<=n;i++){
+	                 if(edges[frontNode][i]==1&&!visited[i]){
+	                     parent[i]=frontNode;
+	                     queue.add(i);
+	                     visited[i]=true;
+	                     if(i==y){
+	                         flag=1;
+	                         break;
+	                     }
+	                 }
+	             }
+	        
+	            if(flag==1)
+	              break;
+	        }
+	     
+	     ArrayList<Integer> list=new ArrayList<Integer>();
+	       
+	     printBFSPath(parent,x,y,list);
+	     System.out.println(list.size());
+	     
+	     for(int i=list.size()-1;i>=0;i--){
+	         System.out.print(list.get(i)+" ");
+	     }
+	     
+	    }
+	 public static void printBFSPath(int parent[],int x,int v,ArrayList<Integer> list){
+	       if(parent[v]==v&&parent[v]==x&&v==x){
+	           list.add(v);
+	           return;
+	       }
+	       list.add(v);
+	       printBFSPath(parent,x,parent[v],list);
+	    }    
+	 
+	 //Question 4(HackerEarth Graphs)
+	 public static void Dhoom4() {
 		 Scanner sc=new Scanner(System.in);
-         //Vertices
-         int n=sc.nextInt();
-         //Edges
-         int e=sc.nextInt();
-         //Adjacency Array
-         int edges[][]=new int[n][n];
-         for(int i=0;i<e;i++){
-             int sv=sc.nextInt();
-             int ev=sc.nextInt();
-             edges[sv][ev]=1;
-             edges[ev][sv]=1;
-         }
-         int m=sc.nextInt();
-         while(m--!=0){
-             int sv=sc.nextInt();
-             int t=sc.nextInt();
-             social(edges,n,sv,t);
-             
-         }	 
+	       int s_val=sc.nextInt();
+	       int r_val=sc.nextInt();
+	       int n=sc.nextInt();
+	       ArrayList<Integer> list=new ArrayList<Integer>();
+	       for(int i=0;i<n;i++){
+	           int x=sc.nextInt();
+	           list.add(x);
+	       }
+	       
+	       Queue<Integer> queue=new LinkedList<Integer>();
+	       HashMap<Integer,Integer>map=new HashMap<Integer,Integer>();
+	       map.put(s_val,0);
+	       queue.add(s_val);
+	       
+	       while(!queue.isEmpty()){
+	    	   
+	           int frontNode=queue.poll();
+	           
+	           for(int i=0;i<n;i++){
+	               int z=(((frontNode)%100000)*((list.get(i))%100000))%100000;
+	               queue.add(z);
+	               if(!map.containsKey(z)) {
+	            	   map.put(z,map.get(frontNode)+1);
+	               }
+	               if(z==r_val){
+	                  System.out.println(map.get(z));
+	                  return;
+	               }
+	           }
+	          
+	        }
+	       
+	            
+	       System.out.println(-1);
 		 
-		 
+	 }
+	 
+	 //Question 5(HackeEarth Graphs)
+	  public static void findPath(int arr[][],int xi,int yi,int x,int y,int n,int m){
+	        int storage[][]=new int[n+1][m+1];
+	        for(int i=1;i<=n;i++){
+	            for(int j=1;j<=m;j++){
+	                storage[i][j]=-1;
+	            }
+	        }
+	        boolean visited[][]=new boolean[n+1][m+1];
+	        
+	        
+	        ArrayList<Integer> list=new ArrayList<Integer>();
+	        
+	        int result=findPath(arr,xi,yi,x,y,n,m,storage,visited,list);
+	        System.out.println(list.size()+" "+result);  
+	  }
+	  public static int findPath(int arr[][],int xi,int yi,int x,int y,int n,int m,int storage[][],boolean visited[][],ArrayList<Integer> list){
+	    	 
+	    	if(x==xi&&y==yi){
+	    		    list.add(arr[x][y]);
+		            visited[x][y]=true;
+	    		    storage[x][y]=arr[x][y];
+		            return storage[x][y];
+		    }
+	        if(x<=0||x>n||y<=0||y>m){
+	            return Integer.MAX_VALUE;
+	        }
+	        if(arr[x][y]==-6) {
+	        	return Integer.MAX_VALUE;
+	        }
+	        if(visited[x][y]==true) {
+	        	return Integer.MAX_VALUE;
+	        }
+	        
+	       
+	        
+	        if(storage[x][y]!=-1){
+	            return storage[x][y];
+	        }
+	        
+	        visited[x][y]=true;
+	        int option1,option2,option3,option4=Integer.MAX_VALUE;
+	        option1=option2=option3=option4;
+	        
+	                        
+	               option1=findPath(arr,xi,yi,x-1,y,n,m,storage,visited,list);
+	         	   option2=findPath(arr,xi,yi,x,y+1,n,m,storage,visited,list);
+	               option3=findPath(arr,xi,yi,x+1,y,n,m,storage,visited,list);
+	               option4=findPath(arr,xi,yi,x,y-1,n,m,storage,visited,list);
+	         
+	          storage[x][y]=arr[x][y]+Math.min(option1,Math.min(option2,Math.min(option3,option4)));
+	          list.add(storage[x][y]); 
+	        return storage[x][y];
+	    }
+	 
+	 
+	 public static void main(String[] args) {
+		 Scanner sc=new Scanner(System.in);
+	       int n=sc.nextInt();
+	       int m=sc.nextInt();
+	       
+	       int arr[][]=new int[n+1][m+1];
+	       
+	       for(int i=1;i<=n;i++){
+	           for(int j=1;j<=m;j++){
+	               char ch=sc.next().charAt(0);
+	               arr[i][j]=ch-48;
+	           }
+	       }
+	       
+	       int x=sc.nextInt();
+	       int y=sc.nextInt();
+	       int q=sc.nextInt();
+	       while(q--!=0){
+	         int xi=sc.nextInt();
+	         int yi=sc.nextInt();
+	         findPath(arr,xi,yi,x,y,n,m);
+	       }
+		
 
 	}
 
