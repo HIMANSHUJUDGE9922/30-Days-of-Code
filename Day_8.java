@@ -1,4 +1,13 @@
 import java.util.*;
+
+class Pair{
+	int a,b;
+	
+	public Pair(int a,int b){
+		this.a=a;
+		this.b=b;
+	}
+}
 public class Day_8 {
 
 	
@@ -34,7 +43,91 @@ public class Day_8 {
 	        }
 	    }
 	
-	public static void main(String[] args) {
+	 //Question 2(HackerEarth Graphs)
+	 public static void floodFill(int edges[][],int n,int m){
+	        
+	        boolean visited[][]=new boolean[n+1][m+1];
+	        int max=0,count=0;
+	        for(int i=1;i<=n;i++){
+	            for(int j=1;j<=m;j++){
+	                if(edges[i][j]==1&&!visited[i][j]){
+	                    visited[i][j]=true;
+	                    count=count+1;
+	                    int result=floodFill(edges,n,m,i,j,visited);
+	                    if(result>max) {
+	                    	max=result;
+	                    }
+	                }
+	            }
+	        }
+	 System.out.println(count+" "+max);   
+	 
+	 }
+	 public static int floodFill(int edges[][],int n,int m,int i,int j,boolean visited[][]){
+	        int count=0;
+	    	Pair k=new Pair(i,j);
+	        Queue<Pair> queue=new LinkedList<Pair>();
+	        queue.add(k);
+	        while(!queue.isEmpty()){
+	        	Pair z=queue.poll();
+	        	count=count+1;
+	            int x=z.a;
+	            int y=z.b;
+	            
+	            //Case 1
+	            if(x-1>=1&&y-1>=1&&edges[x-1][y-1]==1&&!visited[x-1][y-1]){
+	            	Pair q=new Pair(x-1,y-1);
+	            	visited[x-1][y-1]=true;
+	            	queue.add(q);
+	            }
+	            
+	            if(x-1>=1&&edges[x-1][y]==1&&!visited[x-1][y]) {
+	            	Pair q=new Pair(x-1,y);
+	            	visited[x-1][y]=true;
+	            	queue.add(q);
+	            }
+	            
+	            if(x-1>=1&&y+1<=m&&edges[x-1][y+1]==1&&!visited[x-1][y+1]){
+	            	Pair q=new Pair(x-1,y+1);
+	            	visited[x-1][y+1]=true;
+	            	queue.add(q);
+                }
+	            
+	            if(y-1>=1&&edges[x][y-1]==1&&!visited[x][y-1]) {
+	            	Pair q=new Pair(x,y-1);
+	            	visited[x][y-1]=true;
+	            	queue.add(q);
+                }
+	            
+	            if(y+1<=m&&edges[x][y+1]==1&&!visited[x][y+1]) {
+	            	Pair q=new Pair(x,y+1);
+	            	visited[x][y+1]=true;
+	            	queue.add(q);
+                }
+	            
+	            if(x+1<=n&&y-1>=1&&edges[x+1][y-1]==1&&!visited[x+1][y-1]) {
+	            	Pair q=new Pair(x+1,y-1);
+	            	visited[x+1][y-1]=true;
+	            	queue.add(q);
+                }
+	            
+	            if(x+1<=n&&edges[x+1][y]==1&&!visited[x+1][y]) {
+	            	Pair q=new Pair(x+1,y);
+	            	visited[x+1][y]=true;
+	            	queue.add(q);
+                }
+	            
+	            if(x+1<=n&&y+1<=m&&edges[x+1][y+1]==1&&!visited[x+1][y+1]) {
+	            	Pair q=new Pair(x+1,y+1);
+	            	visited[x+1][y+1]=true;
+	            	queue.add(q);
+                }
+	        }
+	    
+	    return count;
+	    }
+	 
+	 public static void main(String[] args) {
 		  Scanner sc=new Scanner(System.in);
 	       
 		  int t=sc.nextInt();
