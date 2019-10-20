@@ -82,7 +82,7 @@ public class Day_9 {
 	}
 	}
 	
-	//Code ched Question_2(Getting Correct Answer for it)
+	//Code chef Question_2(Getting Correct Answer for it)
 	public static void Question_2Final() {
 		Scanner sc=new Scanner(System.in);
 		int t=sc.nextInt();
@@ -121,8 +121,82 @@ public class Day_9 {
 		}
 	}
 	
-	public static void main(String[] args) {
-         
-		
+	
+	public static void Question_1October() {
+		 Scanner sc=new Scanner(System.in);
+         int t=sc.nextInt();
+         while(t--!=0) {
+        	 int n=sc.nextInt();
+        	 int first=sc.nextInt();
+        	 int second=sc.nextInt();
+        	 int min,max,min_pos,max_pos;
+        	 if(first>second) {
+        		 max=first;
+        		 max_pos=0;
+        		 min=second;
+        		 min_pos=1;
+        	 }
+        	 else {
+        		 max=second;
+        		 max_pos=1;
+        		 min=first;
+        		 min_pos=0;
+        	 }
+        	 for(int i=2;i<n;i++) {
+        		 int x=sc.nextInt();
+        		 if(x<min) {
+        			 min=x;
+        			 min_pos=i;
+        		 }
+        		 if(x>max) {
+        			 max=x;
+        			 max_pos=i;
+        		 }
+        	 }
+        	 if(min_pos<max_pos) {
+        		 System.out.println(min+" "+max);
+        	 }
+        	 else {
+        		 System.out.println(max+" "+min);
+        	 }
+        	 
+         }
 	}
+	
+	public static boolean  makeOne(long n,long start) {
+		if(start==n){
+			return true;
+		}
+		if(start>n) {
+			return false;
+		}
+		boolean  option1=makeOne(n,start*10);
+		if(option1==true) {
+			return true;
+		}
+		boolean option2=makeOne(n,start*20);
+		if(option2==true) {
+			return true;
+		}
+		return false;
+	}
+	
+ 
+	public static void main(String[] args) {
+    
+		Scanner sc=new Scanner(System.in);
+		int t=sc.nextInt();
+		while(t--!=0) {
+			   long n=sc.nextLong();
+			   boolean result=makeOne(n,1);
+			   if(result==true) {
+				   System.out.println("Yes");
+			   }
+			   else {
+				   System.out.println("No");
+			   }
+		}
+    	
+    
+    }
 }
