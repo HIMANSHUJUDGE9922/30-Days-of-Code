@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.*;
 
 class Pair{
@@ -10,8 +11,7 @@ class Pair{
 }
 public class Day_8 {
 
-	
-	 //Question 1(HackerEarth Graphs)
+	//Question 1(HackerEarth Graphs)
 	 public static void DFS(int edges[][],int n){
 	        boolean visited[]=new boolean[n+1];
 	        
@@ -127,30 +127,35 @@ public class Day_8 {
 	    return count;
 	    }
 	 
-	 public static void main(String[] args) {
-		  Scanner sc=new Scanner(System.in);
-	       
-		  int t=sc.nextInt();
-	       
-	       while(t--!=0){
-	           int n=sc.nextInt();
-	           int edges[][]=new int[n+1][n+1];
-	           for(int i=1;i<=n;i++) {
-	        	   for(int j=1;j<=n;j++) {
-	        		  edges[i][j]=-1;
-	        	   }
-	           }
-	           for(int i=1;i<n;i++){
-	               int sv=sc.nextInt();
-	               int ev=sc.nextInt();
-	               int w=sc.nextInt();
-	               edges[sv][ev]=w;
-	               edges[ev][sv]=w;
-	           }
-	           
-	          DFS(edges, n); 
-	       }
+	 //Question 3(HackerEarth Graphs)
+	 public static void fuelFill(){
+		 Scanner sc=new Scanner(System.in);
+		 
+		 int count=0;
+		 
+		 int n=sc.nextInt();
+		 int x=sc.nextInt();
+		 
+		 ArrayList<Integer> list=new ArrayList<Integer>();
+		 for(int i=0;i<n;i++) {
+			int a=sc.nextInt();
+			list.add(a);
+		 }
+		 
+		 for(int i=0;i<n;i++) {
+			 if((x-list.get(i))>=0) {
+				 count=count+1;
+				 x=x-list.get(i);
+			 }
+		 }
+		 System.out.println(count+1);
+		 
+	 }
+	 
 
+	 public static void main(String[] args) {
+		
+		 
 	}
 
 }
