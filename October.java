@@ -43,11 +43,11 @@ public class October {
 		Scanner sc=new Scanner(System.in);
 		 int t=sc.nextInt();
 		 while(t--!=0) {
-			 long n=sc.nextLong();
-			 long m=sc.nextLong();
-			 long arr1[][]=new long[(int) (n+1)][(int) (m+1)];
-			 long arr2[][]=new long[(int) (n+1)][(int) (m+1)];
-			 long q=sc.nextInt();
+			 int n=sc.nextInt();
+			 int m=sc.nextInt();
+			 int arr1[][]=new int[n+1][m+1];
+			 int arr2[][]=new int[n+1][m+1];
+			 int q=sc.nextInt();
 
 			 for(int i=0;i<q;i++){
 				 int x=sc.nextInt();
@@ -67,17 +67,21 @@ public class October {
 				 }
 			 }
 			 
-			 long count=0;
+			 int count=0;
 			 for(int i=1;i<=n;i++) {
 				 for(int j=1;j<=m;j++) {
-					 arr1[i][j]=arr1[i][j]+arr2[i][j];
-					 if(arr1[i][j]%2!=0) {
+					 BigInteger sum=BigInteger.valueOf(arr1[i][j]);
+					 sum=sum.add(BigInteger.valueOf(arr2[i][j]));
+					 sum=sum.mod(BigInteger.valueOf(2));
+					 int res=sum.compareTo(BigInteger.valueOf(0));
+					 if(res==0) {
 						 count++;
 					 }
 				 }
 			 }
 			System.out.println(count); 
 		 }
+
 	}
 	
 	//Question 3
